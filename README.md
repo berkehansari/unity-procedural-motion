@@ -6,7 +6,7 @@
 [![Platform](https://img.shields.io/badge/Platform-Cross--Platform-lightgrey.svg)]()
 [![OpenUPM](https://img.shields.io/badge/UPM-Compatible-orange.svg)]()
 
-A highly optimized, production-ready, AAA-quality procedural animation and physics inertia system for Unity. This package decouples complex first-person movement constraints from visual rendering, utilizing **Second Order Dynamics (Mass-Spring Systems)** to provide hyper-realistic weapon sway, kinetic recoil impulse, directional physical lag, and organic micro-drifts.
+A highly optimized, production-ready, high-quality procedural animation and physics inertia system for Unity. This package decouples complex first-person movement constraints from visual rendering, utilizing **Second Order Dynamics (Mass-Spring Systems)** to provide hyper-realistic weapon sway, kinetic recoil impulse, directional physical lag, and organic micro-drifts.
 
 Designed with **Clean Architecture** principles, it introduces complete controller independence, enabling developers to plug the system into any custom movement implementation (Rigidbody, CharacterController, or Raycast-based) via standard interface signatures.
 
