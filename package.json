@@ -1,0 +1,26 @@
+{
+  "name": "org.berkehansari.proceduralmotion",
+  "version": "1.0.0",
+  "displayName": "Procedural Motion Toolkit",
+  "description": "A highly optimized Unity C# package providing frame-rate independent procedural weapon sway, camera bobbing, and decoupled motion inertia physics.",
+  "unity": "2021.3",
+  "author": {
+    "name": "Berkehan Sari",
+    "url": "https://github.com/berkehansari"
+  },
+  "keywords": [
+    "unity3d",
+    "procedural-animation",
+    "weapon-sway",
+    "fps-mechanics",
+    "bobbing"
+  ],
+  "category": "Animation",
+  "samples": [
+    {
+      "displayName": "First Person Demo Setup",
+      "description": "An example first-person controller implementing the IMotionStateProvider to showcase seamless weapon sway and bobbing integration.",
+      "path": "Samples~/DemoSetup"
+    }
+  ]
+}
