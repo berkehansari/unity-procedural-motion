@@ -1,0 +1,14 @@
+{
+    "name": "org.berkehansari.proceduralmotion",
+    "rootNamespace": "Org.BerkehanSari.ProceduralMotion",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
