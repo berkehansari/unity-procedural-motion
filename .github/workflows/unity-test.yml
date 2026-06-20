@@ -1,0 +1,49 @@
+name: Unity Automated Test Suite 🧪
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  runTests:
+    name: Run Unity Unit Tests 🚀
+    runs-on: ubuntu-latest
+    steps:
+      # 1. GitHub deponuzdaki kodları sanal sunucuya çekiyoruz
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      # 2. Büyük Unity dosyaları (meta, asset vb.) için Git LFS'i aktif ediyoruz
+      - name: Checkout LFS
+        run: |
+          git lfs checkout
+
+      # 3. Unity Paket kodlarını test edebilmek için geçici bir sanal Unity Projesi simüle ediyoruz
+      - name: Create Test Sandbox Project
+        run: |
+          mkdir -p UnitySandbox/Assets
+          mkdir -p UnitySandbox/Packages
+          echo '{"dependencies": {"org.berkehansari.proceduralmotion": "file:../"}}' > UnitySandbox/Packages/manifest.json
+
+      # 4. Game-CI Test Runner eylemini kullanarak testlerimizi koşturuyoruz
+      - name: Execute Runtime Unit Tests
+        uses: game-ci/unity-test-runner@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          projectPath: UnitySandbox
+          testMode: playmode
+          artifactsPath: UnitySandbox/artifacts
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      # 5. Test sonuç raporlarını GitHub paneline şık bir şekilde yüklüyoruz
+      - name: Upload Test Artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Test Results
+          path: UnitySandbox/artifacts
