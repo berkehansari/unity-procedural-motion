@@ -16,13 +16,13 @@ jobs:
         with:
           lfs: true
 
-      - name: Create Isolated Unity Sandbox
+      - name: Create Test Project
         run: |
-          mkdir -p ${{ runner.temp }}/UnitySandbox/Assets
-          mkdir -p ${{ runner.temp }}/UnitySandbox/ProjectSettings
-          mkdir -p ${{ runner.temp }}/UnitySandbox/Packages
-          echo "m_EditorVersion: 6000.0.43f1" > ${{ runner.temp }}/UnitySandbox/ProjectSettings/ProjectVersion.txt
-          echo '{"dependencies": {"org.berkehansari.proceduralmotion": "file:${{ github.workspace }}"}, "testables": ["org.berkehansari.proceduralmotion"]}' > ${{ runner.temp }}/UnitySandbox/Packages/manifest.json
+          mkdir -p TestProject/Assets
+          mkdir -p TestProject/ProjectSettings
+          mkdir -p TestProject/Packages
+          echo "m_EditorVersion: 6000.0.43f1" > TestProject/ProjectSettings/ProjectVersion.txt
+          echo '{ "dependencies": { "org.berkehansari.proceduralmotion": "file:../" }, "testables": [ "org.berkehansari.proceduralmotion" ] }' > TestProject/Packages/manifest.json
 
       - name: Execute Runtime Unit Tests
         uses: game-ci/unity-test-runner@v4
@@ -31,7 +31,7 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          projectPath: ${{ runner.temp }}/UnitySandbox
+          projectPath: TestProject
           testMode: playmode
           artifactsPath: artifacts
           githubToken: ${{ secrets.GITHUB_TOKEN }}
