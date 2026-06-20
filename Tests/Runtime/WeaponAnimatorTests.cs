@@ -38,8 +38,11 @@ namespace Org.BerkehanSari.ProceduralMotion.Tests
         public void Test_Initialization_SetsDefaultValues()
         {
             Assert.IsNotNull(animator);
-            Assert.AreEqual(10f, animator.smooth, "Default linear interpolation smoothing should be initialized correctly.");
-            Assert.AreEqual(12f, animator.smoothRot, "Default rotational interpolation smoothing should be initialized correctly.");
+            
+            Assert.AreEqual(150f, animator.positionalStiffness, "Default positional stiffness should be initialized correctly.");
+            Assert.AreEqual(14f, animator.positionalDamping, "Default positional damping should be initialized correctly.");
+            Assert.AreEqual(150f, animator.rotationalStiffness, "Default rotational stiffness should be initialized correctly.");
+            Assert.AreEqual(14f, animator.rotationalDamping, "Default rotational damping should be initialized correctly.");
         }
 
         [UnityTest]
