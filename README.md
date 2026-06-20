@@ -45,17 +45,16 @@ unity-procedural-motion/
 
 ## 📐 Mathematical Foundations
 
-Standard linear interpolation (`Mathf.Lerp`) often feels robotic and lacks physical weight. To achieve true AAA gunplay (inspired by _Modern Warfare 2019_ and _Escape from Tarkov_), this toolkit completely abandons traditional interpolation in favor of **Second Order Dynamics (Hooke's Law)**.
+Standard linear interpolation (`Mathf.Lerp`) often feels robotic and lacks physical weight. To achieve true AAA-like gunplay (inspired by *Modern Warfare 2019* and *Escape from Tarkov*), this toolkit completely abandons traditional interpolation in favor of **Second Order Dynamics (Hooke's Law)**. 
 
 ### ⚙️ Mass-Spring System (Kinetic Inertia)
+We calculate the weapon as a physical mass attached to a spring.
 
-We calculate the weapon as a physical mass attached to a spring. When the player moves or looks around, the weapon overshoots slightly and snaps back, providing realistic weight and momentum:
+$$F_{spring} = (X_{target} - X_{current}) \cdot k$$
+$$v_{current} = (v_{current} + F_{spring} \cdot \Delta t) \cdot (1 - d \cdot \Delta t)$$
+$$X_{current} = X_{current} + v_{current} \cdot \Delta t$$
 
-$$ \mathbf{F}_{spring} = (\mathbf{X}_{target} - \mathbf{X}_{current}) \cdot k $$
-$$ \mathbf{v}_{current} = (\mathbf{v}_{current} + \mathbf{F}_{spring} \cdot \Delta t) \cdot (1 - d \cdot \Delta t) $$
-$$ \mathbf{X}_{current} = \mathbf{X}_{current} + \mathbf{v}\_{current} \cdot \Delta t $$
-
-_Where $k$ is the structural stiffness, $d$ is the friction/damping multiplier, and $\mathbf{v}$ is the current kinetic velocity vector._
+Where $k$ is the structural stiffness, $d$ is the friction/damping multiplier, and $\mathbf{v}$ is the current kinetic velocity vector.
 
 ### 🌊 Organic Micro-Drift & Bobbing
 
