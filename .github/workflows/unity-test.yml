@@ -19,7 +19,7 @@ jobs:
       - name: Reorganize Workspace for Package Testing
         run: |
           mkdir -p unity-package
-          
+
           # Move package contents - ensure package.json exists before moving
           if [ -f "package.json" ]; then
             mv package.json unity-package/
@@ -28,24 +28,22 @@ jobs:
           if [ -d "Tests" ]; then mv Tests unity-package/; fi
           if [ -f "README.md" ]; then mv README.md unity-package/; fi
           if [ -d "Samples~" ]; then mv Samples~ unity-package/; fi
-          
+
           mkdir -p TestProject/Assets
           mkdir -p TestProject/ProjectSettings
           mkdir -p TestProject/Packages
-          
+
           echo "m_EditorVersion: 6000.0.43f1" > TestProject/ProjectSettings/ProjectVersion.txt
-          
-          cat > TestProject/Packages/manifest.json << 'EOF'
-{
-  "dependencies": {
-    "com.unity.test-framework": "1.3.9",
-    "org.berkehansari.proceduralmotion": "file:../../unity-package"
-  },
-  "testables": [
-    "org.berkehansari.proceduralmotion"
-  ]
-}
-EOF
+
+          echo '{
+            "dependencies": {
+              "com.unity.test-framework": "1.3.9",
+              "org.berkehansari.proceduralmotion": "file:../../unity-package"
+            },
+            "testables": [
+              "org.berkehansari.proceduralmotion"
+            ]
+          }' > TestProject/Packages/manifest.json
 
       - name: Execute Runtime Unit Tests
         uses: game-ci/unity-test-runner@v4
