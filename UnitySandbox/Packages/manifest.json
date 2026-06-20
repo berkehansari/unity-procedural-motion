@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "org.berkehansari.proceduralmotion": "file:.."
-  },
-  "testables": ["org.berkehansari.proceduralmotion"]
-}
