@@ -35,7 +35,8 @@ jobs:
 
           echo "m_EditorVersion: 6000.0.43f1" > TestProject/ProjectSettings/ProjectVersion.txt
 
-          echo '{
+          cat > TestProject/Packages/manifest.json <<'EOFMANIFEST'
+          {
             "dependencies": {
               "com.unity.test-framework": "1.3.9",
               "org.berkehansari.proceduralmotion": "file:../../unity-package"
@@ -43,7 +44,8 @@ jobs:
             "testables": [
               "org.berkehansari.proceduralmotion"
             ]
-          }' > TestProject/Packages/manifest.json
+          }
+          EOFMANIFEST
 
       - name: Execute Runtime Unit Tests
         uses: game-ci/unity-test-runner@v4
