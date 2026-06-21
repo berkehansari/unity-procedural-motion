@@ -262,14 +262,12 @@ namespace Org.BerkehanSari.ProceduralMotion
 
         public void RecoilFire(Vector3 posPower, Vector3 rotPower)
         {
-            // 1. Traditional Sharp Kick
             targetRecoilPos += new Vector3(Random.Range(-posPower.x, posPower.x), Random.Range(0, posPower.y), posPower.z);
 
             float randRotY = Random.Range(-rotPower.y, rotPower.y);
             float randRotZ = Random.Range(-rotPower.z, rotPower.z);
             targetRecoilRot += new Vector3(rotPower.x, randRotY, randRotZ);
 
-            // 2. THE MW19 SECRET: Inject raw kinetic energy into the spring system for Barrel Wobble!
             currentRotVelocity += new Vector3(rotPower.x * recoilSpringImpulse, randRotY * recoilSpringImpulse, randRotZ * recoilSpringImpulse);
             currentPosVelocity += new Vector3(0, 0, posPower.z * recoilSpringImpulse);
 
